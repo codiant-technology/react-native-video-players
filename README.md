@@ -75,8 +75,7 @@ AppRegistry.registerComponent('VideoExample', () => VideoExample)
 ## Install
 
 ```shell
-npm i -S react-native-video-player --save
-npm i d3-shape --save
+npm i  react-native-video-player --save
 npm i react-native-keep-awake --save
 npm i react-native-music-control --save
 npm i react-native-orientation --save
