@@ -40,16 +40,15 @@ VideoPlayers;
 
 ## Install
 
-shell
-Also install dependent libraries.
-
-npm i react-native-video --save
+```shell
+npm i -S react-native-video-player --save
+npm i d3-shape --save
 npm i react-native-keep-awake --save
 npm i react-native-music-control --save
 npm i react-native-orientation --save
 npm i react-native-svg --save
-
-
+npm i react-native-video --save
+```
 
 ##  Add the android.permission.FOREGROUND_SERVICE permission to your AndroidManifest.xml
 
@@ -57,42 +56,99 @@ npm i react-native-svg --save
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
 
-## for react-native-video
-
 Then follow the instructions for your platform to link react-native-video into your project:
 
-iOS installation
+### iOS installation
+<details>
+  <summary>iOS details</summary>
 
+#### Standard Method
 
-React Native 0.60 and above
+**React Native 0.60 and above**
 
-Run npx pod-install. Linking is not required in React Native 0.60 and above.
- -----------------------------
-React Native 0.59 and below
+Run `npx pod-install`. Linking is not required in React Native 0.60 and above.
 
-Run react-native link react-native-video to link the react-native-video library.
+**React Native 0.59 and below**
 
---Android installation--.
+Run `react-native link react-native-video` to link the react-native-video library.
 
-Linking is not required in React Native 0.60 and above. If your project is using React Native < 0.60, run react-native link react-native-video to link the react-native-video library.
+#### Using CocoaPods (required to enable caching)
+
+Setup your Podfile like it is described in the [react-native documentation](https://facebook.github.io/react-native/docs/integration-with-existing-apps#configuring-cocoapods-dependencies). 
+
+Depending on your requirements you have to choose between the two possible subpodspecs:
+
+Video only:
+
+```diff
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
++  `pod 'react-native-video', :path => '../node_modules/react-native-video/react-native-video.podspec'`
+end
+```
+
+Video with caching ([more info](docs/caching.md)):
+
+```diff
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
++  `pod 'react-native-video/VideoCaching', :path => '../node_modules/react-native-video/react-native-video.podspec'`
+end
+```
+
+</details>
+
+### tvOS installation
+  <details>
+  <summary>tvOS details</summary>
+
+`react-native link react-native-video` doesn’t work properly with the tvOS target so we need to add the library manually.
+
+First select your project in Xcode.
+
+<img src="./docs/tvOS-step-1.jpg" width="40%">
+
+After that, select the tvOS target of your application and select « General » tab
+
+<img src="./docs/tvOS-step-2.jpg" width="40%">
+
+Scroll to « Linked Frameworks and Libraries » and tap on the + button
+
+<img src="./docs/tvOS-step-3.jpg" width="40%">
+
+Select RCTVideo-tvOS
+
+<img src="./docs/tvOS-step-4.jpg" width="40%">
+</details>
+
+### Android installation
+<details>
+  <summary>Android details</summary>
+ 
+Linking is not required in React Native 0.60 and above.
+If your project is using React Native < 0.60, run `react-native link react-native-video` to link the react-native-video library.
 
 Or if you have trouble, make the following additions to the given files manually:
 
-
-android/settings.gradle
+#### **android/settings.gradle**
 
 The newer ExoPlayer library will work for most people.
 
+```gradle
 include ':react-native-video'
 project(':react-native-video').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-video/android-exoplayer')
+```
+
 If you need to use the old Android MediaPlayer based player, use the following instead:
 
+```gradle
 include ':react-native-video'
 project(':react-native-video').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-video/android')
+```
 
-android/app/build.gradle
+#### **android/app/build.gradle**
+
 From version >= 5.0.0, you have to apply these changes:
 
+```diff
 dependencies {
    ...
     compile project(':react-native-video')
@@ -100,29 +156,37 @@ dependencies {
 -   implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
 
 }
+```
 
----- android/gradle.properties----
+#### **android/gradle.properties**
 
 Migrating to AndroidX (needs version >= 5.0.0):
 
-android.useAndroidX=true //add
-android.enableJetifier=true //add
+```gradle.properties
+android.useAndroidX=true
+android.enableJetifier=true
+```
 
-==== MainApplication.java ====
+#### **MainApplication.java**
+
 On top, where imports are:
 
+```java
 import com.brentvatne.react.ReactVideoPackage;
-Add the ReactVideoPackage class to your list of exported packages.
+```
 
+Add the `ReactVideoPackage` class to your list of exported packages.
+
+```java
 @Override
 protected List<ReactPackage> getPackages() {
     return Arrays.asList(
             new MainReactPackage(),
-            new ReactVideoPackage()  //= add
+            new ReactVideoPackage()
     );
 }
-
-
+```
+</details>
 ## Notes 
 
 IOS Only: -
