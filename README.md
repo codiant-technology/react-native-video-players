@@ -56,7 +56,7 @@ class VideoExample extends React.Component {
 }
 
 AppRegistry.registerComponent('VideoExample', () => VideoExample)
-VideoPlayers;
+
 ```
 ##  A customisable React Native video player for Android and IOS
 
