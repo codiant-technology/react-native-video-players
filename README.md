@@ -206,12 +206,17 @@ protected List<ReactPackage> getPackages() {
 
 ### iOS installation
 <details>
-  <summary>iOS details</summary>
+
+<summary>iOS details</summary>
+
 To get audio/video in IOS when app is in background
+
 
 From x-code  in capabilities add background modes and enable audio mode.
 
-also  add  following entries to get orientation in landscape : -
+
+Also  add  following entries to get orientation in landscape :-
+
 
 Add this lines into appDelegate.m file.
 ```
