@@ -20,8 +20,42 @@
 ## Usage
 ```javascript
 import VideoPlayers from 'react-native-video-players';
+onst styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  }
+})
 
-// TODO: What to do with the module?
+const url = ['https://your-url.com/video.mp4']
+
+class VideoExample extends React.Component {
+
+  render() {
+    return (
+      <View style={styles.container}>
+       <VideoPlayers
+        source={{
+          uri: url,
+        }}
+        title={'Video title'}
+        favorite={favorite}
+        paused={paused}
+        
+        resizeMode={'contain'}
+        playInBackground={true}
+        playWhenInactive={true}
+        
+        isSettingShow={true}
+        
+        controlTimeout={2000}
+      />
+      </View>
+    )
+  }
+}
+
+AppRegistry.registerComponent('VideoExample', () => VideoExample)
 VideoPlayers;
 ```
 ##  A customisable React Native video player for Android and IOS
@@ -96,28 +130,7 @@ end
 
 </details>
 
-### tvOS installation
-  <details>
-  <summary>tvOS details</summary>
 
-`react-native link react-native-video` doesn’t work properly with the tvOS target so we need to add the library manually.
-
-First select your project in Xcode.
-
-<img src="./docs/tvOS-step-1.jpg" width="40%">
-
-After that, select the tvOS target of your application and select « General » tab
-
-<img src="./docs/tvOS-step-2.jpg" width="40%">
-
-Scroll to « Linked Frameworks and Libraries » and tap on the + button
-
-<img src="./docs/tvOS-step-3.jpg" width="40%">
-
-Select RCTVideo-tvOS
-
-<img src="./docs/tvOS-step-4.jpg" width="40%">
-</details>
 
 ### Android installation
 <details>
@@ -187,10 +200,13 @@ protected List<ReactPackage> getPackages() {
 }
 ```
 </details>
+
+
 ## Notes 
 
-IOS Only: -
-
+### iOS installation
+<details>
+  <summary>iOS details</summary>
 To get audio/video in IOS when app is in background
 
 From x-code  in capabilities add background modes and enable audio mode.
@@ -198,13 +214,15 @@ From x-code  in capabilities add background modes and enable audio mode.
 also  add  following entries to get orientation in landscape : -
 
 Add this lines into appDelegate.m file.
+```
 #import "Orientation.h"
 
 - (UIInterfaceOrientationMask)application:(UIApplication )application supportedInterfaceOrientationsForWindow:(UIWindow )window {
   return [Orientation getOrientation];
 }
+```
 
-
+</details>
 
 
 ## Props
