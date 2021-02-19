@@ -14,7 +14,7 @@
   <img  width="150" height="300" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_04.png">
    <img  width="150" height="300" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_01.PNG">
    <br/>
-   <img  width="400" height="200" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_02.png">
+   <img  width="430" height="200" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_02.png">
   </p>
   
 ## Usage
