@@ -10,8 +10,8 @@
 
 <p align="center">
 <img  width="300" height="150" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_02.png">
- <img  width="300" height="150" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_03.png">
-  <img  width="300" height="150" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_04.png">
+ <img  width="150" height="300" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_03.png">
+  <img  width="150" height="300" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_04.png">
   </p>
   
 ## Usage
