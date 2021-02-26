@@ -1,3 +1,7 @@
+## React Native Video Player
+
+This library is designed to support custome video player controls in React Native for both iOS and Android in both state forground and background.
+
 <p align="left">
  <img  width="150" height="300" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_03.png">
   <img  width="150" height="300" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_04.png">
@@ -6,9 +10,6 @@
    <img  width="430" height="200" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_02.png">
 </p>
 
-## React Native Video Player
-
-This library is designed to support custome video player controls in React Native for both iOS and Android in both state forground and background.
 
 ## Features
 
@@ -32,8 +33,6 @@ This library is designed to support custome video player controls in React Nativ
 Or
 
 `$ npm install react-native-video-players`
-
-
 
   
 ## Usage
@@ -74,15 +73,15 @@ AppRegistry.registerComponent('VideoExample', () => VideoExample)
 ```
 
 
+
 ## Install
 
 ```shell
-npm i react-native-video-player --save
-npm i react-native-keep-awake --save
+
+npm i react-native-video --save
 npm i react-native-music-control --save
 npm i react-native-orientation --save
-npm i react-native-svg --save
-npm i react-native-video --save
+
 ```
 
 Then follow the instructions for your platform to link react-native-video into your project:
@@ -195,7 +194,7 @@ protected List<ReactPackage> getPackages() {
 </details>
 
 
-## Mandatory Steps 
+## Mandatory Steps For Background Support
 
 ### iOS 
 <details>
@@ -238,20 +237,18 @@ Add the android.permission.FOREGROUND_SERVICE permission to your AndroidManifest
 
 Prop                  | Type     | Required | Default                   | Description
 --------------------- | -------- | -------- | ------------------------- | -----------
-url                   | string, number | Yes |                          | A URL string (or number for local) is required.
-
-isAutoPlay             |bool    | No |           |false                |used to manage autoPlay state.
-autoPlayFunc              | bool     | No       | false                     | Autoplays the video as soon as it's loaded
+url                   | string, number | Yes|                           | A URL string (or number for local) is required.
+isAutoPlay            | bool     | No |     | false                     | used to manage autoPlay state.
+autoPlayFunc          | bool     | No       | false                     | Autoplays the video as soon as it's loaded
 loop                  | bool     | No       | false                     | Allows the video to continuously loop
 title                 | string   | No       | ''                        | Adds a title of your video at the top of the player
 theme                 | string   | No       | 'white'                   | Adds an optional theme colour to the players controls
 hideFullScreenControl | bool     | No       | false                     | This hides the full screen control
 style                 | number, object | No | {}                        | Apply styles directly to the Video player (ignored in fullscreen mode)
 resizeMode            | string   | No       | 'contain'                 | Fills the whole screen at aspect ratio. contain, cover etc
-isRepeat              | bool     | No      | false                     | This is to active repeat play of a single video.
+isRepeat              | bool     | No       | false                     | This is to active repeat play of a single video.
 playInBackground      | bool     | No       | false                     | Audio continues to play when app enters background.
 playWhenInactive      | bool     | No       | false                     | [iOS] Video continues to play when control or notification center are shown.
-
 onLoad                | function | No       | (data) => {}              | Returns data once video is loaded
 onProgress            | function | No       | (progress) => {}          | Returns progress data
 onEnd                 | function | No       | () => {}                  | Invoked when video finishes playing  
@@ -259,26 +256,31 @@ onError               | function | No       | (error) => {}             | Return
 onPlay                | function | No       | (playing) => {}           | Returns a boolean during playback
 error                 | boolean, object | No | true                     | Pass in an object to Alert. See https://facebook.github.io/react-native/docs/alert.html
 theme                 | object   | No       | all white                 | Pass in an object to theme. (See example below to see the full list of available settings)
-controlTimeout             | number   | No       | 3                 | Set the visibility of controls button and the progress bar after the video was started
-isFavoriteShow        | bool   | No  | false | Show favorite icon on controls
-favorite             |function | No  | ()=>{}           | Invoked when favorite icon is pressed
-isFavorite   | bool | No |    | Pass true will mark video  as favorite
-isSettingShow  |bool |No |    | Required true to show setting icon.
-isVideoSettingsOpen |bool | No |   |Pass state true  to open setting
-onMorePress  | bool | No |  false | Adds an action button at the top right of the player to perform action on   isVideoSettingsOpen state
-qualityArray |array |No | ['320p', '480p', '720p', '180p'] | set pixel as per requied.
-autoConnectionStatus |bool |No | True | state to manage autoConnection Status 
-IsAutoConnectionStatus | function|  | () => {}   |Invoked when autoConnectionStatus is change 
-boxSelected | bool |  |   | state to manage selected quality option
-IsQualityArray | function |  No  | (data,index) => {}   | Invoked when we select quality 
-isShareShow  | bool | No | false | To show share icon on video control
-share |function |No  | () => {}   | Invoked when click in share button
-nextMedia | function | No | () => {}   |Invoked when click on nextMedia from music control
-previousMedia | function | No | () => {}  |Invoked when click on previousMedia music control
-back  |function | No | () => {}   |Invoked when click on backButton from video player control
-next |function | No | () => {}   |Invoked when click on nextButton from video player control
-isShuffle |bool | No | |used to manage isShuffle state
-shuffle |function | no |  () => {}   |Invoked on  shffle button
-backToList | function | No |  () => {}   |Invoked on  back button action 
-onSeekRelease |function | No | () => {} | Invoked on onSeekRelease
+controlTimeout        | number   | No       | 3                         | Set the visibility of controls button and the progress bar after the video was started
+isFavoriteShow        | bool     | No       | false                     | Show favorite icon on controls
+favorite              | function | No       | ()=>{}                    | Invoked when favorite icon is pressed
+isFavorite            | bool     | No       |                           | Pass true will mark video  as favorite
+isSettingShow         | bool     | No       |                           | Required true to show setting icon.
+isVideoSettingsOpen   | bool     | No       |                           | Pass state true  to open setting
+onMorePress           | bool     | No       | false                     | Adds an action button at the top right of the player to perform action on isVideoSettingsOpen state
+qualityArray          | array    | No       | ['320p', '480p', '720p', '180p'] | set pixel as per requied.
+autoConnectionStatus  | bool     | No       | True                      | state to manage autoConnection Status 
+IsAutoConnectionStatus| function |          | () => {}                  | Invoked when autoConnectionStatus is change 
+boxSelected           | bool     |          |                           | state to manage selected quality option
+IsQualityArray        | function | No       | (data,index) => {}        | Invoked when we select quality 
+isShareShow           | bool     | No       | false                     | To show share icon on video control
+share                 | function | No       | () => {}                  | Invoked when click in share button
+nextMedia             | function | No       | () => {}                  | Invoked when click on nextMedia from music control
+previousMedia         | function | No       | () => {}                  | Invoked when click on previousMedia music control
+back                  | function | No       | () => {}                  | Invoked when click on backButton from video player control
+next                  | function | No       | () => {}                  | Invoked when click on nextButton from video player control
+isShuffle             | bool     | No       |                           | used to manage isShuffle state
+shuffle               | function | no       |  () => {}                 | Invoked on  shffle button
+backToList            | function | No       |  () => {}                 | Invoked on  back button action 
+onSeekRelease         |function  | No       | () => {}                  | Invoked on onSeekRelease
+
+
+
+
+
 
