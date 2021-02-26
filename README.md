@@ -1,21 +1,40 @@
-# react-native-video-players
-
-## Getting started
-
-`$ npm install react-native-video-players --save`
-
-### Mostly automatic installation
-
-`$ react-native link react-native-video-players`
-
 <p align="left">
-
  <img  width="150" height="300" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_03.png">
   <img  width="150" height="300" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_04.png">
    <img  width="150" height="300" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_01.PNG">
    <br/>
    <img  width="430" height="200" src="https://github.com/codiant-technology/react-native-video-players/blob/main/assets/IMG_02.png">
-  </p>
+</p>
+
+## React Native Video Player
+
+This library is designed to support custome video player controls in React Native for both iOS and Android in both state forground and background.
+
+## Features
+
+* Fullscreen support for Android and iOS.
+* Having option to navigate from media-player screen.
+* Support share media file url.
+* Having functionality to do favourite/unfavourite on any media.
+* Support Portrait and Landscape mode.
+* Set Custom video quality. 
+* Having custom controls on media like suffel, auto-loop, auto-play.
+* Support forward/ backward by buttons and also seek-bar drag.
+* Having next/back, play/pause buttons on media player.
+* Background video/audio play support with all custom controls.
+* Music controls on notification bar when app is inactive.
+
+
+### Installation
+
+`$ yarn add react-native-video-players`
+
+Or
+
+`$ npm install react-native-video-players`
+
+
+
   
 ## Usage
 ```javascript
@@ -39,15 +58,10 @@ class VideoExample extends React.Component {
           uri: url,
         }}
         title={'Video title'}
-        favorite={favorite}
         paused={paused}
-        
         resizeMode={'contain'}
         playInBackground={true}
         playWhenInactive={true}
-        
-        isSettingShow={true}
-        
         controlTimeout={2000}
       />
       </View>
@@ -58,36 +72,18 @@ class VideoExample extends React.Component {
 AppRegistry.registerComponent('VideoExample', () => VideoExample)
 
 ```
-##  A customisable React Native video player for Android and IOS
 
-
-
-## Features
-
-* Fullscreen support for Android and iOS!
-* Works with react-navigation
-* Optional action button for custom use
-* Add your own logo and/or placeholder
-* support Potrait and Landscape mode
-* background video/audio play  supports
-* music-controls on notification bar  when app is not active
 
 ## Install
 
 ```shell
-npm i  react-native-video-player --save
+npm i react-native-video-player --save
 npm i react-native-keep-awake --save
 npm i react-native-music-control --save
 npm i react-native-orientation --save
 npm i react-native-svg --save
 npm i react-native-video --save
 ```
-
-##  Add the android.permission.FOREGROUND_SERVICE permission to your AndroidManifest.xml
-
-
-<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-
 
 Then follow the instructions for your platform to link react-native-video into your project:
 
@@ -126,9 +122,7 @@ Video with caching ([more info](docs/caching.md)):
 +  `pod 'react-native-video/VideoCaching', :path => '../node_modules/react-native-video/react-native-video.podspec'`
 end
 ```
-
 </details>
-
 
 
 ### Android installation
@@ -201,12 +195,12 @@ protected List<ReactPackage> getPackages() {
 </details>
 
 
-## Notes 
+## Mandatory Steps 
 
-### iOS installation
+### iOS 
 <details>
 
-<summary>iOS details</summary>
+<summary>iOS Setup</summary>
 
 To get audio/video in IOS when app is in background
 
@@ -225,7 +219,18 @@ Add this lines into appDelegate.m file.
   return [Orientation getOrientation];
 }
 ```
+</details>
 
+### Android
+<details>
+<summary>Android Setup</summary>
+
+Add the android.permission.FOREGROUND_SERVICE permission to your AndroidManifest.xml.
+
+```
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+```
 </details>
 
 
@@ -234,22 +239,19 @@ Add this lines into appDelegate.m file.
 Prop                  | Type     | Required | Default                   | Description
 --------------------- | -------- | -------- | ------------------------- | -----------
 url                   | string, number | Yes |                          | A URL string (or number for local) is required.
-autoPlay              | bool     | No       | false                     | Autoplays the video as soon as it's loaded
+
+isAutoPlay             |bool    | No |           |false                |used to manage autoPlay state.
+autoPlayFunc              | bool     | No       | false                     | Autoplays the video as soon as it's loaded
 loop                  | bool     | No       | false                     | Allows the video to continuously loop
 title                 | string   | No       | ''                        | Adds a title of your video at the top of the player
-placeholder           | string   | No       | undefined                 | Adds an image placeholder while it's loading and stopped at the beginning
 theme                 | string   | No       | 'white'                   | Adds an optional theme colour to the players controls
 hideFullScreenControl | bool     | No       | false                     | This hides the full screen control
 style                 | number, object | No | {}                        | Apply styles directly to the Video player (ignored in fullscreen mode)
 resizeMode            | string   | No       | 'contain'                 | Fills the whole screen at aspect ratio. contain, cover etc
-rotateToFullScreen    | bool     | No       | false                     | Tapping the fullscreen button will rotate the screen. Also rotating the screen will automatically switch to fullscreen mode
-fullScreenOnly        | bool     | No       | false                     | This will play only in fullscreen mode
 isRepeat              | bool     | No      | false                     | This is to active repeat play of a single video.
 playInBackground      | bool     | No       | false                     | Audio continues to play when app enters background.
 playWhenInactive      | bool     | No       | false                     | [iOS] Video continues to play when control or notification center are shown.
-onMorePress           | function | No       | undefined                 | Adds an action button at the top right of the player. Use this callback function for your own use. e.g share link
-onFullScreen          | function | No       | (value) => {}             | Returns the fullscreen status whenever it toggles. Useful for situations like react navigation.
-lockPortraitOnFsExit  | bool     | No       | false                     | Keep Portrait mode locked after Exiting from Fullscreen mode
+
 onLoad                | function | No       | (data) => {}              | Returns data once video is loaded
 onProgress            | function | No       | (progress) => {}          | Returns progress data
 onEnd                 | function | No       | () => {}                  | Invoked when video finishes playing  
@@ -257,4 +259,26 @@ onError               | function | No       | (error) => {}             | Return
 onPlay                | function | No       | (playing) => {}           | Returns a boolean during playback
 error                 | boolean, object | No | true                     | Pass in an object to Alert. See https://facebook.github.io/react-native/docs/alert.html
 theme                 | object   | No       | all white                 | Pass in an object to theme. (See example below to see the full list of available settings)
-controlDuration             | number   | No       | 3                 | Set the visibility time of the pause button and the progress bar after the video was started
+controlTimeout             | number   | No       | 3                 | Set the visibility of controls button and the progress bar after the video was started
+isFavoriteShow        | bool   | No  | false | Show favorite icon on controls
+favorite             |function | No  | ()=>{}           | Invoked when favorite icon is pressed
+isFavorite   | bool | No |    | Pass true will mark video  as favorite
+isSettingShow  |bool |No |    | Required true to show setting icon.
+isVideoSettingsOpen |bool | No |   |Pass state true  to open setting
+onMorePress  | bool | No |  false | Adds an action button at the top right of the player to perform action on   isVideoSettingsOpen state
+qualityArray |array |No | ['320p', '480p', '720p', '180p'] | set pixel as per requied.
+autoConnectionStatus |bool |No | True | state to manage autoConnection Status 
+IsAutoConnectionStatus | function|  | () => {}   |Invoked when autoConnectionStatus is change 
+boxSelected | bool |  |   | state to manage selected quality option
+IsQualityArray | function |  No  | (data,index) => {}   | Invoked when we select quality 
+isShareShow  | bool | No | false | To show share icon on video control
+share |function |No  | () => {}   | Invoked when click in share button
+nextMedia | function | No | () => {}   |Invoked when click on nextMedia from music control
+previousMedia | function | No | () => {}  |Invoked when click on previousMedia music control
+back  |function | No | () => {}   |Invoked when click on backButton from video player control
+next |function | No | () => {}   |Invoked when click on nextButton from video player control
+isShuffle |bool | No | |used to manage isShuffle state
+shuffle |function | no |  () => {}   |Invoked on  shffle button
+backToList | function | No |  () => {}   |Invoked on  back button action 
+onSeekRelease |function | No | () => {} | Invoked on onSeekRelease
+
